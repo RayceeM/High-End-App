@@ -27,7 +27,82 @@
     <script>
         L.mapbox.accessToken = 'pk.eyJ1IjoidGhlYmVhY2htYXN0ZXIiLCJhIjoiY2lwdTR5a2k0MDA0MWkxa3N3MXVzbzcxMSJ9.E6-oQtByqhpdPn79pckcsQ';
         var map = L.mapbox.map('map', 'mapbox.streets')
-            .setView([40, -74.50], 9);
+            .setView([-1.315, 36.835], 6.8);
+        // L.marker([-1.315, 36.835], {
+        //     icon: L.mapbox.marker.icon({
+        //         'marker-size': 'large',
+        //         'marker-symbol': 'restaurant',
+        //         'marker-color': '#f44341'
+        //     })
+        // }).addTo(map);
+
+        // L.marker([-2.315, 31.835], {
+        //     icon: L.mapbox.marker.icon({
+        //         'marker-size': 'large',
+        //         'marker-symbol': 'restaurant',
+        //         'marker-color': '#f44341'
+        //     })
+        // }).addTo(map);
+        var _array = [{
+            "name": "Voyager Hotel",
+            "lat": "-4.0357",
+            "capacity": "100",
+            "long": "39.7158"
+        }, {
+            "name": "Pride Inn Hotel",
+            "lat": "-4.059",
+            "capacity": "78",
+            "long": "39.6663"
+        }, {
+            "name": "Sarova Whitesands Hotel",
+            "lat": "-3.9954",
+            "capacity": "120",
+            "long": "39.7324"
+        }, {
+            "name": "Kisumu Hotel",
+            "lat": "-0.1066",
+            "capacity": "100",
+            "long": "34.7526"
+        }, {
+            "name": "Jumuia Hotel",
+            "lat": "-0.0993",
+            "capacity": "115",
+            "long": "34.7633"
+        }, {
+            "name": "Acacia Premier Hotel",
+            "lat": "-0.1074",
+            "capacity": "150",
+            "long": "34.7518"
+        }, {
+            "name": "Serena Hotel Nairobi",
+            "lat": "-1.287",
+            "capacity": "170",
+            "long": "36.8145"
+        }, {
+            "name": "Intercontinental Hotel",
+            "lat": "-1.28",
+            "capacity": "200",
+            "long": "36.817"
+        }, {
+            "name": "Hilton Hotel Nairobi",
+            "lat": "-1.279",
+            "capacity": "150",
+            "long": "36.891"
+        }]
+        for (var index = 0; index < _array.length; index++) {
+            // var element = _array[index];
+            //console.log(_array[index].lat);
+            var _lat = _array[index].lat;
+            var _long = _array[index].long;
+            L.marker([_lat, _long], {
+                icon: L.mapbox.marker.icon({
+                    'marker-size': 'large',
+                    'marker-symbol': 'restaurant',
+                    'marker-color': '#f44341'
+                })
+            }).addTo(map);
+
+        }
     </script>
 </body>
 
