@@ -1,0 +1,26 @@
+[
+	{
+		"Hotel Name": "Kibandaski",
+		"Hotel Location Lats": "0.17247599999999999",
+		"Capacity": "500",
+		"Hotel Location Longs": "34.370800600000003"
+	},
+	{
+		"Hotel Name": "Kwa Madhe",
+		"Hotel Location Lats": "0.28186050000000001",
+		"Capacity": "40",
+		"Hotel Location Longs": "34.728616799999998"
+	},
+	{
+		"Hotel Name": "Bomas",
+		"Hotel Location Lats": "-4.5526391999999998",
+		"Capacity": "100",
+		"Hotel Location Longs": "39.108624200000001"
+	},
+	{
+		"Hotel Name": "Shirikisho",
+		"Hotel Location Lats": "-0.4324537",
+		"Capacity": "200",
+		"Hotel Location Longs": "36.917966999999997"
+	}
+]

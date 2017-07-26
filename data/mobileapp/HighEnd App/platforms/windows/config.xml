@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.acaciamobile.redoak" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
+    <name>Highend App</name>
+    <description>Made with Monaca (http://monaca.mobi)</description>
+    <author />
+    <content src="index.html" />
+    <allow-navigation href="*" />
+    <allow-intent href="itms:*" />
+    <allow-intent href="itms-apps:*" />
+    <preference name="ErrorUrl" value="" />
+    <access origin="*" />
+    <icon src="/res/winrt/icon/package_logo_winrt.png" target="StoreLogo" />
+    <icon src="/res/winrt/icon/app_logo_winrt.png" target="Square150x150Logo" />
+    <icon src="/res/winrt/icon/app_small_logo_winrt.png" target="Square30x30Logo" />
+    <icon src="/res/winrt/icon/app_tile_wide_logo_winrt.png" target="Wide315x150Logo" />
+    <splash height="300" src="/res/winrt/screen/app_splash_screen_winrt.png" width="620" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="AndroidLaunchMode" value="singleTop" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="BackupWebStorage" value="cloud" />
+    <preference name="EnableViewportScale" value="false" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="FadeSplashScreenDuration" value="250" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+    <preference name="TopActivityIndicator" value="gray" />
+    <preference name="GapBetweenPages" value="0" />
+    <preference name="PageLength" value="0" />
+    <preference name="PaginationBreakingMode" value="page" />
+    <preference name="PaginationMode" value="unpaginated" />
+    <preference name="UIWebViewDecelerationSpeed" value="normal" />
+    <preference name="ios-XCBuildConfiguration-TARGETED_DEVICE_FAMILY" value="1,2" />
+    <preference name="WindowsStorePublisherName" value="My Name" />
+    <preference name="WindowsStoreIdentityName" value="cf38b46d-8eb7-fff8-e4df-d9fc4baafbd0" />
+    <preference name="KeepRunning" value="true" />
+    <preference name="monaca:AndroidIsPackageNameSeparate" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="Orientation" value="default" />
+    <preference name="SplashScreenDelay" value="1000" />
+    <preference name="Fullscreen" value="false" />
+</widget>

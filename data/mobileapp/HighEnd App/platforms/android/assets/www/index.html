@@ -1,0 +1,577 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <script src="lib/onsenui/js/onsenui.min.js"></script>
+    <script src="components/monaca-jquery/jquery.js">
+    </script>
+
+    <script src="js/kinvey-html5-sdk-3.5.0.min.js"></script>
+    <!--
+    <script src="js/MobileServices.Web-1.2.7.min.js"></script>
+    <script src="js/azure-mobile-apps-client.min.js"></script>-->
+    <script src="js/nav.js"></script>
+    <script src="js/validate.js"></script>
+
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--
+    <!--This basically is our Kinvey Library very essential-->
+    <script>
+        //We'll Initialize our Mobile Backend from here
+        Kinvey.initialize({
+            appKey: 'kid_HyLcxWeGZ',
+            appSecret: 'c747fc75e2db4e50b26d8ef5a782c4f6'
+        }).then(function(activeUser) {
+            var showModal = document.getElementById('getdatamodal');
+            // showModal.show();
+            if (!activeUser) {
+                console.log("No Active User Present"); //Basically check if someone is logged in
+
+                document.querySelector('#_navigator')
+                    .pushPage('login-page.html')
+                    .then(function() {
+                        console.log("Welcome!")
+                    });
+            } else {
+
+                document.querySelector('#_navigator').pushPage('menu-page.html');
+                console.log("Active User Present");
+                GetFoodData();
+                // GetHotels();
+                // console.log(activeUser.username);
+
+
+            }
+        }).catch(function(error) {
+            ons.notification.toast("Fatal Error");
+            console.log(error);
+        })
+
+        var promise = Kinvey.ping().then(function(response) {
+            console.log('Kinvey Ping Success. Kinvey Service is alive, version: ' +
+                response.version + ', response: ' + response.kinvey);
+
+        }).catch(function(error) {
+            console.log('Kinvey Ping Failed. Response: ' + error.description);
+        });
+    </script>
+    <script>
+        ons.ready(function() {
+            console.log("Onsen UI is ready");
+        });
+    </script>
+    <script>
+        document.addEventListener('deviceready', function() {
+            console.log("Device is Ready");
+        }, false);
+    </script>
+    <!--<script src="js/app.js"></script>-->
+</head>
+
+<body>
+    <ons-navigator id="_navigator" page="login-page.html">
+        <!--
+            page="login-page.html"
+            -->
+        <!---->
+        <ons-page>
+            <ons-modal style="background-color: #189090" id="getdatamodal" direction="up">
+                <div class="profile-card">
+
+                    <img src="static_assets/main_img.png" class="profile-image">
+
+
+                </div>
+                <div style="text-align: center">
+                    <p>
+                        <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Hang on...
+                    </p>
+                </div>
+            </ons-modal>
+        </ons-page>
+
+    </ons-navigator>
+
+    <ons-template id="login-page.html">
+        <ons-page>
+            <ons-tabbar position="auto" animation="slide" animation-options="{duration: 0.245, delay: 0.05, timing: 'ease-out'}">
+                <ons-tab icon="ion-log-in" page="login.html" active>
+                </ons-tab>
+                <ons-tab icon="ion-person-add" page="sign-up.html">
+                </ons-tab>
+            </ons-tabbar>
+        </ons-page>
+    </ons-template>
+    <ons-template id="login.html">
+        <ons-page id="login-page">
+            <ons-toolbar>
+                <div class="center">Login</div>
+            </ons-toolbar>
+
+            <div class="profile-card">
+
+                <img src="static_assets/main_img.png" class="profile-image">
+                <div class="profile-name">High-End Mobile App</div>
+                <div class="profile-desc">For high end services and quality meals</div>
+
+            </div>
+
+            <div class="login-form">
+
+                <ons-input float id="l_username" type="text" placeholder="Username" value=""></ons-input>
+                <ons-input float id="l_pass" type="password" placeholder="Password" value=""></ons-input>
+                <br><br>
+                <ons-button id="login-button" modifier="large" class="login-button">Log In</ons-button>
+                <br><br>
+                <ons-button modifier="quiet" class="forgot-password">Forgot password?</ons-button>
+                <br><br>
+                <p class="note error" id="errorP"></p>
+
+            </div>
+
+            <ons-modal style="background-color: #189090" id="log-in-modal" direction="up">
+                <div class="profile-card">
+
+                    <img src="static_assets/main_img.png" class="profile-image">
+
+
+                </div>
+                <div style="text-align: center">
+                    <p>
+                        <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Logging you in...
+                    </p>
+                </div>
+            </ons-modal>
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="sign-up.html">
+        <ons-page id="sign-up-page">
+            <ons-toolbar>
+                <div class="center">Sign Up</div>
+            </ons-toolbar>
+            <div class="formarea" style="padding: 10px;">
+                <div class="form-row">
+                    <!--
+                        TODO Add Plat spec Text Fields
+                        <ons-input id="_fname" float type="text" class="text-input--underbar width-full" placeholder="First Name" value=""></ons-input>  -->
+                    <ons-input id="_fname" float type="text" class="width-full" placeholder="First Name" value=""></ons-input>
+
+                </div>
+                <div class="form-row">
+
+                    <ons-input float id="_lname" type="text" class="width-full" placeholder="Last Name"></ons-input>
+                    <!--
+                        <ons-input float id="_lname" type="text" class="width-full" placeholder="Last Name" value="" style="border-width-left: 1px"></ons-input>
+                    -->
+                </div>
+
+                <div class="form-row">
+                    <ons-input id="_username" float type="text" class="width-full" placeholder="Username"></ons-input>
+                </div>
+
+                <div class="form-row">
+                    <ons-input id="_email" float type="email" class="width-full" placeholder="Email"></ons-input>
+                </div>
+
+                <div class="form-row">
+                    <ons-input id="_pass" float type="password" class="width-full" placeholder="Password"></ons-input>
+
+                </div>
+                <div class="form-row">
+                    <ons-input id="pass_" float type="password" class="width-full" placeholder="Password"></ons-input>
+
+                </div>
+
+                <div class="form-row">
+                    <ons-input id="_phone" float type="tel" class="width-full" placeholder="Phone Number"></ons-input>
+
+                </div>
+
+                <div class="lucent error">
+                    <p id="_error" class="note"></p>
+                </div>
+
+                <div class="vspc form-row">
+                    <ons-button id="sign-up-button" modifier="large"> Sign up</ons-button>
+                </div>
+            </div>
+            <ons-modal style="background-color: #189090" id="sign-up-modal" direction="up">
+                <div class="profile-card">
+
+                    <img src="static_assets/main_img.png" class="profile-image">
+
+
+                </div>
+                <div style="text-align: center">
+                    <p>
+                        <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Creating your account...
+                    </p>
+                </div>
+            </ons-modal>
+
+        </ons-page>
+
+    </ons-template>
+    <ons-template id="menu-page.html">
+        <ons-page id="menu-page.html">
+            <ons-splitter>
+                <ons-splitter-side id="_menu" side="right" swipe-target-width="200px" width="220px" collapse swipeable>
+                    <ons-page>
+                        <ons-list>
+
+                            <ons-list-item onclick="openPayment()" tappable>
+                                Orders
+                            </ons-list-item>
+                            <ons-list-item onclick="openHotelList()" tappable>
+                                Popular Hotels
+                            </ons-list-item>
+                            <ons-list-item onclick="openMaps()" tappable>
+                                Maps
+                            </ons-list-item>
+                            <ons-list-item onclick="openAboutPage()" tappable>
+                                About
+                            </ons-list-item>
+                            <ons-list-item onclick="Logout()" tappable>
+                                Logout
+                            </ons-list-item>
+                        </ons-list>
+                    </ons-page>
+                </ons-splitter-side>
+                <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+            </ons-splitter>
+        </ons-page>
+    </ons-template>
+    <ons-template id="home.html">
+        <ons-page id="home-page" onDeviceBackButton="ExitFunc()">
+
+            <ons-toolbar>
+
+                <div class="right">
+                    <ons-toolbar-button onclick="fn.open()">
+                        <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">
+                    Food Item List
+                </div>
+            </ons-toolbar>
+
+            <ons-fab onclick="ShowStuff()" id="foodFab" position="bottom right">
+                <ons-icon icon="md-plus"></ons-icon>
+            </ons-fab>
+            <ons-fab disabled id="waitFab" onclick="ReceiveOrder()" style="background-color: #f45342" ripple position="bottom left">
+                <ons-icon icon="ion-android-restaurant"></ons-icon>
+            </ons-fab>
+            <ons-fab id="feedBackFab" style="background-color: #f49842" ripple position="bottom center">
+                <ons-icon icon="ion-speakerphone"></ons-icon>
+            </ons-fab>
+
+            <div style="text-align: center; margin-top: 10px;margin-bottom: 10px;">
+                <ons-search-input icon="md-search" placeholder="Search">
+
+                </ons-search-input>
+            </div>
+            <div>
+
+                <ons-list tappable modifier="inset">
+                    <ons-list-header>Select an Item
+                    </ons-list-header>
+                    <div id="dataList">
+
+                    </div>
+                    <script>
+                        // $(document).ready(function() {
+                        //     $('#menuList').click(function() {
+                        //         $('#dataList').toggle('slow');
+                        //     });
+                        // });
+                    </script>
+
+                </ons-list>
+            </div>
+            <ons-modal id="getfooditemmodal" direction="up">
+                <div style="text-align: center">
+                    <p>
+                        <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Hang on...
+                    </p>
+                </div>
+            </ons-modal>
+            <ons-modal id="payModal" direction="up">
+                <ons-card>
+                    <div class="title">
+                        Pay Order
+                    </div>
+                    <div class="content">
+                        <div style="text-align: center; margin-top: 30px;">
+                            <p>
+                                <ons-input id="transactCode" modifier="underbar" placeholder="MPESA Code" float></ons-input>
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <div class="left">
+                                    <ons-button modifier="quiet" onclick="ons.notification.toast('Noooo!');">Cancel</ons-button>
+                                </div>
+                                <div class="right">
+                                    <ons-button modifier="cta" onclick="ons.notification.toast('Wooot!');">Complete</ons-button>
+                                </div>
+
+                            </p>
+                        </div>
+                    </div>
+                </ons-card>
+            </ons-modal>
+
+
+        </ons-page>
+    </ons-template>
+    <ons-template id="payments.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+
+                    <ons-back-button>Back</ons-back-button>
+                </div>
+                <div class="center">
+                    Payment History
+                </div>
+            </ons-toolbar>
+            <div style="text-align: center; margin-top: 10px;margin-bottom: 10px;">
+                <ons-search-input placeholder="Search"></ons-search-input>
+            </div>
+            <div id="groupList">
+            </div>
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="maps.html">
+        <ons-page id="maps-page">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>Back</ons-back-button>
+                </div>
+                <div class="center">
+                    Maps Page
+
+                </div>
+
+            </ons-toolbar>
+            <!--<p style="padding-top: 15px;"></p>-->
+            <div id="map" style="padding: 20px;height: 100%;" class="content inset">
+
+                <p id="statusText"></p>
+
+            </div>
+        </ons-page>
+    </ons-template>
+    <ons-template id="popular.html">
+        <ons-page id="hotelsPage">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>Back</ons-back-button>
+                </div>
+                <div class="center">
+                    Popular Hotels
+                </div>
+
+            </ons-toolbar>
+            <div style="text-align: center; margin-top: 10px;margin-bottom: 10px;">
+                <ons-search-input placeholder="Search"></ons-search-input>
+            </div>
+            <div>
+
+                <ons-list modifier="inset" id="hotelDataList">
+                </ons-list>
+            </div>
+        </ons-page>
+    </ons-template>
+
+
+
+    <ons-template id="hotelsview.html">
+        <ons-page id="hotelsview">
+            <ons-toolbar>
+                <ons-back-button>Back</ons-back-button>
+                <div class="center">
+
+                </div>
+                <div class="right">
+                    <ons-toolbar-button id="toFbPageBtn">
+                        <!-- <ons-icon icon="ion-ios-chatboxes" style="color: red"></ons-icon> -->
+                        <ons-if platform="android">
+                            <ons-icon icon="ion-ios-chatboxes" style="color: whitesmoke"></ons-icon>
+
+                        </ons-if>
+
+                        <ons-if platform="ios other">
+                            <ons-icon icon="ion-ios-chatboxes" style="color: #0379a0"></ons-icon>
+
+                        </ons-if>
+                    </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
+            <div class="card">
+
+                <div id="_cardname" class="card-name"></div>
+                <div id="_card-desc" class="card-desc">Open till midnight</div>
+
+            </div>
+
+            <div class="rating">
+                <div class="rating-num">
+                    <ons-icon icon="fa-star" fixed-width="false"></ons-icon>
+                    <ons-icon icon="fa-star" fixed-width="false"></ons-icon>
+                    <ons-icon icon="fa-star" fixed-width="false"></ons-icon>
+                    <ons-icon icon="fa-star" fixed-width="false"></ons-icon>
+                    <ons-icon icon="fa-star-half" fixed-width="false"></ons-icon>
+                    4.5
+                </div>
+            </div>
+
+            <ons-list style="border-top: none">
+                <ons-list-item style="line-height: 1; padding: 0;">
+                    <ons-row class="action">
+
+                        <ons-col class="action-col">
+                            <div class="action-icon">
+                                <ons-icon icon="ion-ios-star-half"></ons-icon>
+                            </div>
+                            <div class="action-label">Rate</div>
+                        </ons-col>
+
+                        <ons-col class="action-col">
+                            <div class="action-icon">
+                                <ons-icon icon="ion-bookmark"></ons-icon>
+                            </div>
+                            <div class="action-label">Favorite</div>
+                        </ons-col>
+
+                        <ons-col class="action-col">
+                            <div class="action-icon">
+                                <ons-icon icon="ion-share"></ons-icon>
+                            </div>
+                            <div class="action-label">Share</div>
+                        </ons-col>
+
+                        <ons-col class="action-col">
+                            <div class="action-icon">
+                                <ons-icon icon="ion-compose"></ons-icon>
+                            </div>
+                            <div class="action-label">Check In</div>
+                        </ons-col>
+
+                    </ons-row>
+                </ons-list-item>
+            </ons-list>
+
+            <ons-list id="indMenu" modifier="inset" style="border-top: 0;">
+                <ons-list-item tappable modifier="chevron tappable" onclick="goToMainPage()">
+                    <div class="prop-desc" tappable>
+                        <ons-icon icon="fa-eye"></ons-icon>
+                        See more hotels
+                    </div>
+                </ons-list-item>
+            </ons-list>
+
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="feedback.html">
+        <ons-page id="feedbackPage">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>Back</ons-back-button>
+                </div>
+                <div class="center">New Feedback</div>
+            </ons-toolbar>
+
+            <ons-list modifier="inset" style="margin-top: 10px">
+                <ons-list-item class="to-wrapper">
+                    <ons-row>
+                        <ons-col width="52px">
+                            <ons-icon icon="ion-android-textsms" width="42" class="to-image"></ons-icon>
+                        </ons-col>
+                        <ons-col>
+                            <div id="_fusername" class="to-name">User</div>
+                            <div id="_fUsername_" class="to-email">@user</div>
+                        </ons-col>
+                    </ons-row>
+                </ons-list-item>
+                <ons-list-item>
+                    <input id="fbTopic" type="text" class="text-input text-input--transparent" placeholder="Topic" style="width: 100%">
+                </ons-list-item>
+
+                <ons-list-item>
+                    <textarea id="fbMsg" class="textarea textarea--transparent" placeholder="Message" style="width: 100%; height: 100px;"></textarea>
+                </ons-list-item>
+                <!--
+                <ons-list-item modifier="tappable">
+                    <ons-icon icon="md-cancel" style=" opacity:0.2 "></ons-icon>
+                </ons-list-item>-->
+
+            </ons-list>
+
+            <div style="padding: 10px 9px ">
+                <ons-button id="fbBtn" modifier="large " style="margin: 0 auto; ">
+                    Send
+                </ons-button>
+            </div>
+            <div>
+
+            </div>
+
+            <ons-modal style="background-color: #189090" id="post-feedback-modal" direction="up">
+
+                <div class="profile-card">
+                    <img src="static_assets/main_img.png" class="profile-image">
+                </div>
+                <div style="text-align: center">
+                    <p>
+                        <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Hang on...
+                    </p>
+                </div>
+            </ons-modal>
+        </ons-page>
+    </ons-template>
+    <ons-template id="about.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left ">
+                    <ons-back-button>Back</ons-back-button>
+                </div>
+                <div class="center ">
+                    About
+                </div>
+            </ons-toolbar>
+        </ons-page>
+    </ons-template>
+    <ons-template>
+        <ons-page>
+
+        </ons-page>
+
+        <ons-modal id="get-food-modal" direction="up">
+            <div style="text-align: center">
+                <p>
+                    <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Fetching Data...
+                </p>
+            </div>
+        </ons-modal>
+
+
+
+    </ons-template>
+    <ons-template>
+
+    </ons-template>
+    <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYziP2btKxOHciN8poaI5uEtLeooHatEg&callback=initMap "></script>-->
+</body>
+
+</html>

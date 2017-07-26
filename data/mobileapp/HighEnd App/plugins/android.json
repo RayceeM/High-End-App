@@ -1,0 +1,43 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.acaciamobile.redoak"
+        },
+        "cordova-custom-config": {
+            "PACKAGE_NAME": "com.acaciamobile.redoak"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.acaciamobile.redoak"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.acaciamobile.redoak"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.acaciamobile.redoak"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.acaciamobile.redoak"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.acaciamobile.redoak"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.acaciamobile.redoak"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.acaciamobile.redoak"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.acaciamobile.redoak"
+        }
+    }
+}

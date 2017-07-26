@@ -1,0 +1,27 @@
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://baas.kinvey.com/user/kid_HyLcxWeGZ/login",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json",
+            "authorization": "Basic a2lkX0h5TGN4V2VHWjo2ODkyMjMyZDQwOWE0NDBmODVmODhjMjFhMGExMWU1ZA==",
+            "cache-control": "no-cache",
+            "postman-token": "ccd68a4c-703c-f1f4-0694-b41fbbd77d7f"
+        },
+        "processData": false,
+        "data": "{\n\t\"username\" : \"ArthurKen\",\n\t\"password\" : \"Infrared@1944\"\n}"
+    }
+
+    $.ajax(settings).done(function(response) {
+        console.log(response._kmd.authtoken);
+        docCookies.setItem('access_token', [response._kmd.authtoken]);
+        // this.Reset();
+        document.querySelector('#navigator')
+            .pushPage('menu-page.html')
+            .then(function() {
+                console.log("Menu Page Loaded");
+                GetFoodData();
+            });
+    });
