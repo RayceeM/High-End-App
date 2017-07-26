@@ -14,24 +14,24 @@ ___
   ## The Real Stuff  
   Install NodeJS and launch _command line_ : if the installation went well you should see the following when you type `npm` or `node` in the command line. 
 
-  1. ![alt text](/readassets/node.png "Node Installation")  
-  2. ![alt text](/readassets/nodev.png "Node Version") 
-  3. ![alt text](/readassets/ndenpm.png "NPM installation")  
+  1. ![alt text](readassets/node.png "Node Installation")  
+  2. ![alt text](readassets/nodev.png "Node Version") 
+  3. ![alt text](readassets/ndenpm.png "NPM installation")  
 
-  4. For the next steps in Setup we'll use the node command line ![alt text](/readassets/nodeNpm.png "Search for Node") Search for **node** from the command line.
-  5. If nothing appears check your path variables by searching for **environment** and select **Edit System Environment variables** ![alt text](/readassets/env.png "System Vars") 
+  4. For the next steps in Setup we'll use the node command line ![alt text](readassets/nodeNpm.png "Search for Node") Search for **node** from the command line.
+  5. If nothing appears check your path variables by searching for **environment** and select **Edit System Environment variables** ![alt text](readassets/env.png "System Vars") 
    6. Confirm the installation path for your node setup.Ensure you can find the npm packages installation path. 
    + Select *Environment Variables* from the *Advanced tab* 
    + Under *System Variables* scroll till you get to *Path* then select *Edit* ...Look through till you find **nodejs installation folder**,if it's not already added add a **;** after the last variable then append the path to node installtion folder. 
-   ![alt text](/readassets/env2.png) 
-   ![alt text](/readassets/env3.png) 
-   ![alt text](/readassets/env4.png) 
+   ![alt text](readassets/env2.png) 
+   ![alt text](readassets/env3.png) 
+   ![alt text](readassets/env4.png) 
 
  
  Click the Icon below to play initial setup video
 
  
-[![Play](/readassets/xhdpi.png)](/readassets/setuInit.mp4)
+[![Play](readassets/xhdpi.png)](readassets/setuInit.mp4)
 
 
   <details>
@@ -163,22 +163,22 @@ Done!
    
    1. We'll store our dashboard files the `dashboard` folder . 
    2. Installing `electron` normally takes a while 
-      Give it some time,but you should have the following ![alt Setup](/readassets/electronsetup.png) 
+      Give it some time,but you should have the following ![alt Setup](readassets/electronsetup.png) 
 
    3. In our tool belt we can also install Generators which will allow us to quickly scaffold an electron application. 
-   4. For that to work ensure you have installed `Yeoman`.Learn more from [here](http://yeoman.io/) ![alt Yeoman Generator](/readassets/yeoman.png) 
-   5. We'll then go ahead and install our Electron app Generator **We don'nt necessarily need this -since we can build an electron app from scratch-  but it will speed up the dev process** ![alt Generator](/readassets/yeomanGen.png) 
-   6. This also takes time.A successful installation should look like this ![alt Success](/readassets/yeomanGenS.png) 
+   4. For that to work ensure you have installed `Yeoman`.Learn more from [here](http://yeoman.io/) ![alt Yeoman Generator](readassets/yeoman.png) 
+   5. We'll then go ahead and install our Electron app Generator **We don'nt necessarily need this -since we can build an electron app from scratch-  but it will speed up the dev process** ![alt Generator](readassets/yeomanGen.png) 
+   6. This also takes time.A successful installation should look like this ![alt Success](readassets/yeomanGenS.png) 
    7. In our `dashboard\test` folder we can run the following command  
       ```bash 
       yo electron
       ```  
 
-      ![alt Activity](/readassets/yeomanGenAct.png)  
+      ![alt Activity](readassets/yeomanGenAct.png)  
 
    8. When it's done you should see the following output - _give it some time_ 
 
-      ![alt Output](/readassets/yeomanGenAct2.png) 
+      ![alt Output](readassets/yeomanGenAct2.png) 
     
     9. Running the command  
            
@@ -186,7 +186,7 @@ Done!
             
       
        
-       ![alt Run](/readassets/electronSuc.png) 
+       ![alt Run](readassets/electronSuc.png) 
         
     
   </details> 
@@ -197,10 +197,10 @@ Done!
    </summary> 
 
   1. Under the `dasboard\dash` folder,there is an extracted **Dashboard Template folder** you can look at courtesy of [Creative Tim](https://www.creative-tim.com/)  
-  2. Open the ``` index.html ``` file to have an overview of the LAF(look and feel) ![alt Dash](/readassets/dash.png) 
+  2. Open the ``` index.html ``` file to have an overview of the LAF(look and feel) ![alt Dash](readassets/dash.png) 
   3. A poorly implemented Example exists in the  ```dashboard\db``` folder. 
 
-  ![alt Dashboard](/readassets/edash.png)
+  ![alt Dashboard](readassets/edash.png)
  
 ```bash
  Happy Hacking!
@@ -229,19 +229,19 @@ Done!
 + You can basically make raw HTTP Requests to a REST API directly from Postman and view output 
 + I turned to this due to an inconsistency - I could make REST calls from the Kinvey API Console however ,I could not connect to the same API using the client library,this is certainly odd 
 
-![alt Kinvey Console](/readassets/restCall1.png) 
+![alt Kinvey Console](readassets/restCall1.png) 
 + However the mobile app returns a zero length array despite making a successfull connection to the same API... 
-![alt Mobile Console](/readassets/restCall2.png) 
+![alt Mobile Console](readassets/restCall2.png) 
 + What's funny? This call is being made to the same collection 
-![alt Query](/readassets/restCall3.png) 
+![alt Query](readassets/restCall3.png) 
  
  * Now **Enter Postman** 
  + You can download Postman (the supercharged API Tessing suite) for free from [this here link](https://www.getpostman.com/) 
  You'll need to do some sign in and your're in 
- ![alt Postman](/readassets/postMan2.png) 
+ ![alt Postman](readassets/postMan2.png) 
  + You can learn more about how to use Postman to test APIs and have fun with it form [here](https://www.getpostman.com/docs/) 
  + Basically we get stuff when we do a REST call 
- ![alt Postman Response](/readassets/postman.png) 
+ ![alt Postman Response](readassets/postman.png) 
   
   
  **Cool Thing about Postman** 
@@ -250,12 +250,12 @@ Done!
 
  **How awesome is that?**  
 
- ![alt Ajax Code](/readassets/postmanCode.png)  
+ ![alt Ajax Code](readassets/postmanCode.png)  
  Click on the ```code``` link of your Postman Client  
- ![alt Code Gen](/readassets/postmanCode2.png)
+ ![alt Code Gen](readassets/postmanCode2.png)
  + Let's test this ...Using stardard JQuery -nothing fancy:  
  1. And there we go...Just unapologetically copied and pasted code from Postman into our app and saw it work.... 
- ![alt Postman Results](/readassets/postRes.png)  
+ ![alt Postman Results](readassets/postRes.png)  
  + Postman Deep dives on [Youtube](https://www.youtube.com/channel/UCocudCGVb3MmhWQ1aoIgUQw/videos) 
  + Use [this tool](https://www.ytddownloader.com/) to grab videos from Youtube <-if need be 
  + [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/4520cca2d87fac1b817d#?env%5Bdevbox%5D=W10=) 
@@ -409,6 +409,6 @@ Here is a nice photo of Gradle
   > You can use any port number only if it's available
 
    *This will serve by default `index.html` in that directory navogate to your browser to that port* 
-       ![alt start server](/readassets/serverstart.png) 
-       ![alt navigate to url](/readassets/serverstart2.png)
+       ![alt start server](readassets/serverstart.png) 
+       ![alt navigate to url](readassets/serverstart2.png)
  </details> 
