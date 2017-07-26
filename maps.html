@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>High-End Hotels map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+    <script src="js/jquery.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='map'></div>
+    <script>
+        L.mapbox.accessToken = 'pk.eyJ1IjoidGhlYmVhY2htYXN0ZXIiLCJhIjoiY2lwdTR5a2k0MDA0MWkxa3N3MXVzbzcxMSJ9.E6-oQtByqhpdPn79pckcsQ';
+        var map = L.mapbox.map('map', 'mapbox.streets')
+            .setView([-1.315, 36.835], 6.8);
+        // var _array = [{
+        //     "name": "Voyager Hotel",
+        //     "lat": "-4.0357",
+        //     "capacity": "100",
+        //     "long": "39.7158"
+        // }, {
+        //     "name": "Pride Inn Hotel",
+        //     "lat": "-4.059",
+        //     "capacity": "78",
+        //     "long": "39.6663"
+        // }, {
+        //     "name": "Sarova Whitesands Hotel",
+        //     "lat": "-3.9954",
+        //     "capacity": "120",
+        //     "long": "39.7324"
+        // }, {
+        //     "name": "Kisumu Hotel",
+        //     "lat": "-0.1066",
+        //     "capacity": "100",
+        //     "long": "34.7526"
+        // }, {
+        //     "name": "Jumuia Hotel",
+        //     "lat": "-0.0993",
+        //     "capacity": "115",
+        //     "long": "34.7633"
+        // }, {
+        //     "name": "Acacia Premier Hotel",
+        //     "lat": "-0.1074",
+        //     "capacity": "150",
+        //     "long": "34.7518"
+        // }, {
+        //     "name": "Serena Hotel Nairobi",
+        //     "lat": "-1.287",
+        //     "capacity": "170",
+        //     "long": "36.8145"
+        // }, {
+        //     "name": "Intercontinental Hotel",
+        //     "lat": "-1.28",
+        //     "capacity": "200",
+        //     "long": "36.817"
+        // }, {
+        //     "name": "Hilton Hotel Nairobi",
+        //     "lat": "-1.279",
+        //     "capacity": "150",
+        //     "long": "36.891"
+        // }];
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://baas.kinvey.com/appdata/kid_HyLcxWeGZ/hotels",
+            "method": "GET",
+            "headers": {
+                "authorization": "Basic a2lkX0h5TGN4V2VHWjo2ODkyMjMyZDQwOWE0NDBmODVmODhjMjFhMGExMWU1ZA==",
+                "content-type": "application/json",
+                "cache-control": "no-cache"
+            }
+        }
+
+        $.ajax(settings).done(function(response) {
+            // console.log(response);
+            for (var index = 0; index < response.length; index++) {
+                // var element = _array[index];
+                //console.log(_array[index].lat);
+                var _lat = response[index].lat;
+                var _long = response[index].long;
+                L.marker([_lat, _long], {
+                    icon: L.mapbox.marker.icon({
+                        'marker-size': 'large',
+                        'marker-symbol': 'restaurant',
+                        'marker-color': '#f44341'
+                    })
+                }).addTo(map);
+
+            }
+        });
+    </script>
+</body>
+
+</html>
