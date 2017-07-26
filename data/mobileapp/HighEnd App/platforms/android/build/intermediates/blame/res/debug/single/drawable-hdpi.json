@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\RepoMan\\WFormsApp\\mobileapp\\HighEnd App\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_action_next_item.png",
+        "source": "D:\\RepoMan\\WFormsApp\\mobileapp\\HighEnd App\\platforms\\android\\res\\drawable-hdpi\\ic_action_next_item.png"
+    },
+    {
+        "merged": "D:\\RepoMan\\WFormsApp\\mobileapp\\HighEnd App\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_action_remove.png",
+        "source": "D:\\RepoMan\\WFormsApp\\mobileapp\\HighEnd App\\platforms\\android\\res\\drawable-hdpi\\ic_action_remove.png"
+    },
+    {
+        "merged": "D:\\RepoMan\\WFormsApp\\mobileapp\\HighEnd App\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_action_previous_item.png",
+        "source": "D:\\RepoMan\\WFormsApp\\mobileapp\\HighEnd App\\platforms\\android\\res\\drawable-hdpi\\ic_action_previous_item.png"
+    }
+]
